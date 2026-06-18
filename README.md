@@ -2,135 +2,167 @@
 
 ## Overview
 
-Traditional portfolio strategies often suffer from overfitting because they are optimized using historical data and evaluated on the same period. This project implements a realistic quantitative research pipeline that uses rolling walk-forward backtesting to evaluate whether a portfolio optimization strategy can generalize to unseen market conditions.
+Traditional portfolio optimization methods often suffer from overfitting because they are optimized and evaluated using the same historical data. This project implements a realistic quantitative research pipeline that uses rolling walk-forward backtesting to evaluate whether portfolio optimization strategies can generalize to unseen market conditions.
 
-The system combines Modern Portfolio Theory, Monte Carlo optimization, and advanced risk analytics to construct and evaluate dynamically rebalanced investment portfolios.
+The project combines Modern Portfolio Theory (MPT), Monte Carlo optimization, risk analytics, benchmark comparison, and interactive visualization to build a complete quantitative portfolio research engine.
 
 ---
 
-## Problem Statement
+# Problem Statement
 
-Investors face key questions:
+Investors and portfolio managers face several critical questions:
 
 - How should capital be allocated across multiple assets?
-- Can an optimized portfolio outperform a market benchmark?
-- How does a strategy perform on unseen future data?
-- What level of downside risk does the portfolio carry?
+- Can an optimized portfolio outperform a passive market benchmark?
+- How does a strategy perform in unseen future market environments?
+- What is the downside risk during adverse market conditions?
 
-This project addresses these challenges using a data-driven portfolio research framework.
+This project addresses these questions using a data-driven quantitative investment framework.
 
 ---
 
-## Methodology
+# Features
 
-### 1. Data Collection & Processing
-- Download historical market data
-- Calculate daily returns
-- Clean and prepare financial time-series data
+## Data Pipeline
+- Automatic historical market data collection
+- Data cleaning and preprocessing
+- Daily return calculation
+- Merging multi-asset return datasets
 
-### 2. Portfolio Optimization
-- Generate 2,000 Monte Carlo portfolio simulations during each rebalance period
-- Estimate expected returns and covariance matrices
-- Identify the portfolio with the maximum Sharpe Ratio
-- Visualize the Efficient Frontier and risk-return tradeoff
+## Portfolio Research
+- Expected return estimation
+- Covariance matrix calculation
+- Correlation analysis
+- Efficient Frontier visualization
+- Monte Carlo portfolio optimization
+- Maximum Sharpe Ratio portfolio selection
 
-### 3. Rolling Walk-Forward Backtest
+## Walk-Forward Backtesting
 
-To reduce overfitting, the strategy follows a realistic out-of-sample evaluation process:
+To reduce overfitting, the strategy follows an out-of-sample evaluation process:
 
-- Training Window: 5 years of historical data
-- Testing Window: 1 year of unseen data
+- Training Window: 5 years
+- Testing Window: 1 year
 - Rebalancing Frequency: Annual
+- Portfolio Simulations: 2,000 Monte Carlo portfolios per rebalance period
 
-At each rebalance date:
+At each rebalance step:
 
-1. Optimize portfolio weights using only past data
-2. Apply the optimized weights to the next year
-3. Record real out-of-sample performance
-4. Repeat the process throughout the entire dataset
+1. Historical data is used to find the optimal portfolio weights.
+2. The optimized portfolio is applied to the next unseen test period.
+3. Portfolio performance is recorded.
+4. The process repeats across the complete historical dataset.
 
 ---
 
-## Risk & Performance Analytics
+# Risk & Performance Analysis
 
-The portfolio is evaluated using:
+The portfolio is evaluated using advanced quantitative metrics:
 
-### Performance Metrics
+### Return Metrics
 - Compound Annual Growth Rate (CAGR)
-- Annualized Return
-- Annualized Volatility
-- Sharpe Ratio
-- Sortino Ratio
+- Annualized Returns
 
-### Downside Risk Metrics
+### Risk Metrics
+- Annualized Volatility
 - Maximum Drawdown
 - Value at Risk (VaR)
 - Conditional Value at Risk (CVaR)
 
-### Benchmark Comparison
-- Compare strategy performance against the SPY ETF benchmark
+### Risk-Adjusted Performance
+- Sharpe Ratio
+- Sortino Ratio
+
+### Benchmark Analysis
+- Performance comparison against the SPY ETF benchmark
 
 ---
 
-## Key Results
+# Interactive Dashboard
 
-The rolling backtest produced:
+The project includes a dashboard application for visualizing:
 
-- 📈 CAGR: **25%+**
-- ⚖️ Sharpe Ratio: **~1.0**
-- 🛡️ Sortino Ratio: **> 1**
-- 📊 Consistent outperformance compared to the SPY benchmark
+- Portfolio performance over time
+- Rolling backtest results
+- Risk and return metrics
+- Benchmark comparison
+- Portfolio analytics
 
 ---
 
-## Technology Stack
+# Project Results
 
-### Programming & Data Analysis
+The rolling out-of-sample backtest achieved:
+
+| Metric | Result |
+|---|---|
+| CAGR | 25%+ |
+| Sharpe Ratio | ~1.0 |
+| Sortino Ratio | > 1 |
+| Benchmark | Outperformed SPY |
+
+---
+
+# Project Structure
+
+```
+Quantitative-Portfolio-Optimization-Rolling-Backtest/
+│
+├── data/
+│   ├── raw/                 # Raw downloaded historical market data
+│   ├── processed/           # Cleaned return datasets
+│   └── outputs/             # Charts, visualizations, and generated results
+│
+├── src/
+│   ├── download_data.py     # Market data acquisition
+│   ├── calculate_returns.py # Daily return calculation
+│   ├── merge_returns.py     # Combining asset return series
+│   ├── covariance.py        # Covariance matrix analysis
+│   ├── correlation.py       # Correlation analysis
+│   ├── optimizer.py         # Monte Carlo portfolio optimization
+│   ├── portfolio.py         # Portfolio construction logic
+│   ├── backtest.py          # Portfolio backtesting engine
+│   ├── rolling_backtest.py  # Walk-forward out-of-sample testing
+│   └── risk_metrics.py      # Risk analytics (Sharpe, Sortino, VaR, CVaR)
+│
+├── dashboard.py             # Interactive dashboard
+├── REPORT.md                # Detailed project report
+├── requirements.txt         # Python dependencies
+├── README.md
+└── .gitignore
+```
+
+---
+
+# Technology Stack
+
+## Programming
 - Python
+
+## Data Analysis
 - Pandas
 - NumPy
 
-### Quantitative Finance
+## Visualization
+- Matplotlib
+- Streamlit Dashboard
+
+## Quantitative Finance
 - Modern Portfolio Theory (MPT)
+- Efficient Frontier
 - Monte Carlo Simulation
-- Efficient Frontier Analysis
 - Portfolio Optimization
+- Rolling Walk-Forward Backtesting
 - Risk Management
 
-### Visualization & Analysis
-- Matplotlib
-- Seaborn
-
 ---
 
-## Project Structure
-
-```
-quantitative-portfolio-optimization/
-│
-├── src/
-│   ├── rolling_backtest.py
-│   ├── optimization.py
-│   └── risk_metrics.py
-│
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── outputs/
-│
-├── requirements.txt
-└── README.md
-```
-
----
-
-## Installation & Usage
+# Installation
 
 Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd quantitative-portfolio-optimization
+git clone https://github.com/your-username/Quantitative-Portfolio-Optimization-Rolling-Backtest.git
 ```
 
 Install dependencies:
@@ -139,34 +171,45 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run the rolling backtest:
+---
+
+# Usage
+
+Run the complete rolling backtest:
 
 ```bash
 python src/rolling_backtest.py
 ```
 
-Generate risk analytics:
+Calculate advanced risk metrics:
 
 ```bash
 python src/risk_metrics.py
 ```
 
----
+Launch the interactive dashboard:
 
-## Future Improvements
-
-Potential extensions:
-
-- Include additional asset classes such as bonds and commodities
-- Implement alternative optimization techniques
-- Add transaction cost and slippage sensitivity analysis
-- Develop an interactive Streamlit dashboard
-- Incorporate factor-based portfolio strategies
+```bash
+streamlit run dashboard.py
+```
 
 ---
 
-## Author
+# Future Improvements
 
-**Indrajith**
+Potential future enhancements include:
 
-B.Sc Mathematics | Quantitative Finance & Financial Data Analytics
+- Multi-asset portfolio support (bonds, commodities, ETFs)
+- Alternative optimization techniques
+- Factor-based investing strategies
+- More realistic transaction cost modeling
+- Advanced machine learning-based portfolio allocation
+
+---
+
+# Author
+
+## Indrajith
+
+B.Sc Mathematics  
+Financial Data Analytics | Quantitative Finance Enthusiast
